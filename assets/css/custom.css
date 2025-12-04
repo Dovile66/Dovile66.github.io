@@ -133,7 +133,7 @@ a:active {
 .social-links a i:hover {
     color: white !important;
     background-color: #b066ff !important;
-    transform: scale(1.15) !important;
+    animation: socialIconFloat 0.6s ease-in-out infinite !important;
 }
 
 /* ------------------------------------------------------ */
@@ -494,7 +494,7 @@ a:active {
 .footer .social-links a i:hover {
     background-color: #b066ff !important;
     color: white !important;
-    transform: scale(1.15) !important;
+    animation: socialIconFloat 0.6s ease-in-out infinite !important;
 }
 
 /* ------------------------------------------------------ */
@@ -582,4 +582,391 @@ section,
 .floating-card:hover {
     transform: translateY(-4px) !important;
     background-color: #eacbff !important;
+}
+
+/* ------------------------------------------------------ */
+/* 10lab 1.ANIMACIJA #1 – sekcijų atsiradimas (fade-in + slide-up)*/
+/* ------------------------------------------------------ */
+
+@keyframes fadeInUpSection {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* pritaikome pagrindinėms sekcijoms */
+#about,
+#resume,
+#portfolio,
+#services,
+.contact.section,
+.hero {
+    opacity: 0; /* pradžioje nematoma */
+    animation: fadeInUpSection 0.9s ease-out forwards !important;
+}
+
+/* ------------------------------------------------------ */
+/* 10 lab 1.ANIMACIJA #2 – social ikonų judesys (wiggle/float)     */
+/* ------------------------------------------------------ */
+
+/* bazinis stilius ikonoms */
+.social-links a i,
+.footer .social-links a i {
+    display: inline-block !important;
+    transform-origin: center center !important;
+
+    /* nuolatinė švelni animacija */
+    animation: socialIconIdle 2.5s ease-in-out infinite !important;
+
+    /* spalvų perėjimui */
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease !important;
+}
+
+/* hover – stipresnis wiggle (perrašom animaciją) */
+.social-links a:hover i,
+.footer .social-links a:hover i {
+    background-color: #b066ff !important;
+    color: #ffffff !important;
+    animation: socialIconWiggle 0.6s ease-in-out infinite !important;
+}
+
+/* ŠVELNUS nuolatinis plaukiojimas */
+@keyframes socialIconIdle {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+}
+
+/* STIPRESNIS WIGGLE per hover */
+@keyframes socialIconWiggle {
+    0%   { transform: translateY(0) rotate(0deg); }
+    25%  { transform: translateY(-4px) rotate(-8deg); }
+    50%  { transform: translateY(-4px) rotate(8deg); }
+    75%  { transform: translateY(-2px) rotate(-4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+/* ------------------------------------------------------ */
+/* 10lab 2.KROVIMO ANIMACIJA – besisukantis apskritimas (Spinner) */
+/* ------------------------------------------------------ */
+
+.page-preloader {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 30px 0 !important;
+}
+
+/* pats apskritimas */
+.spinner-circle {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+
+    /* šviesus žiedas + tamsesnė dalis – kad matytųsi sukimas */
+    border: 6px solid #e4c2ff !important;
+    border-top-color: #b066ff !important;
+    border-right-color: #b066ff !important;
+
+    box-shadow: 0 0 12px rgba(176, 102, 255, 0.4) !important;
+
+    animation: spinLoader 0.9s linear infinite !important;
+}
+
+/* sukimosi animacija */
+@keyframes spinLoader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ------------------------------------------------------ */
+/* 10lab 3. Prefers-reduced-motion – išjungiame/supaprastinam */
+/* ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    /* 0) Jokio smooth scroll ir perėjimų */
+    * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+
+    /* 1) Sekcijų fadeInUp animacija – išjungiama */
+    #about,
+    #resume,
+    #portfolio,
+    #services,
+    .contact.section,
+    .hero {
+        animation: none !important;
+        opacity: 1 !important;          
+        transform: none !important;
+    }
+
+    /* 2) Social ikonų judesys – išjungiame wiggle/idle */
+    .social-links a i,
+    .footer .social-links a i {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    /* 3) Krovimo animacija – spinneris nesisuka */
+    .spinner-circle {
+        animation: none !important;
+        border-color: #e4c2ff !important;
+        border-top-color: #e4c2ff !important;
+        border-right-color: #e4c2ff !important;
+        transform: none !important;
+    }
+
+    /* 4) jei dar turi pulsuojančius taškus (dots), išjungi ir juos */
+    .page-preloader .dot {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 5) Išjungiame AOS / scroll animacijas */
+    [data-aos],
+    .aos-init,
+    .aos-animate {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 6) Jei šablonas naudoja animate.css efektus */
+    .animate__animated {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 7) ŽVAIGŽDUTĖS – išjungiame tik reduce režime */
+    .star,
+    .star::before,
+    .star::after,
+    .floating-star,
+    .rotating-star,
+    .scaling-star {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ------------------------------------------------------ */
+/* VIOLETINĖ TEMA – PAPILDOMI PATAISYMAI                  */
+/* ------------------------------------------------------ */
+
+/* 1) HERO – blokas už Mona Lizos nuotraukos (tas mėlynas) */
+.hero-image .image-container::before {
+    background: #6c1381 !important;  /* vietoj mėlynos */
+}
+
+.hero-image .image-overlay {
+    background: #811f97 !important;  /* jei overlay dar mėlynas */
+}
+
+
+/* 2) ABOUT – apvalus rėmelis aplink Mona Lizos nuotrauką */
+.about .profile-image img,
+.about .profile-image {
+    border: 8px solid #7f2b92 !important;
+}
+
+/* 3) Sekcijų pavadinimų brūkšniai po H2 (ABOUT, SERVICES, APRAŠYMAS ir t.t.) */
+.section-title h2::after {
+    background-color: #591369 !important;
+}
+
+/* 4) PROFESINĖ PATIRTIS / IŠSILAVINIMAS – ikonėlės antraštėse */
+.experience-section .section-header i,
+.education-section .section-header i {
+    color: #5e1f6c !important;
+}
+
+/* 4.1) PROFESINĖ PATIRTIS – datų „piliulės“ */
+.experience-card .duration {
+    background-color: #9663cd !important;  /* violetinė piliulė */
+    color: #ffffff !important;
+}
+
+/* 4.2) IŠSILAVINIMAS – metų „piliulės“ */
+.education-timeline .year {
+    background-color: #9663cd !important;
+    color: #ffffff !important;
+    border-radius: 999px !important;
+    padding: 4px 10px !important;
+}
+
+/* 4.3) IŠSILAVINIMAS – vertikali linija ir taškai timeline’e */
+.education-timeline .timeline-track {
+    background-color: #9663cd !important;
+}
+
+.education-timeline .timeline-marker {
+    background-color: #500361 !important;
+    border-color: #9663cd !important;
+}
+
+/* 5) SERVICES – ikonos turi būti tamsiai violetinės */
+.services .service-item .icon i {
+    color: #6b1c7d !important;
+}
+
+/* jei icon konteineris turi rėmelį ar foną – ir jį pervedam į violetinį toną */
+.services .service-item .icon {
+    border-color: #9663cd !important;
+    background-color: #f7e9ff !important;
+}
+
+/* 6) Papildomai – portfolio filtro ikona (All Projects) į violetinę, jei norėsi */
+.portfolio-filters li i {
+    color: #752786 !important;
+}
+
+/* --------------------------------------------- */
+/* papildoma: 1.ANIMUOTAS GRADIENTAS – SERVICES SEKCIJA */
+/* --------------------------------------------- */
+
+/* --------------------------------------------- */
+/* SERVICES – Pastelinis animuotas gradientas     */
+/* --------------------------------------------- */
+
+#services {
+    background: linear-gradient(135deg,
+        #daabf9,
+        #f8c9f2,
+        #dfb8ff,
+        #f6d4ff
+    );
+    background-size: 300% 300%;
+    animation: pastelGradientMove 12s ease infinite;
+
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    border-radius: 0; /* kad gradientas būtų vientisas per visą sekciją */
+}
+
+/* Animacija – labai švelni */
+@keyframes pastelGradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Section title fonas turi būti permatomas */
+#services .section-title {
+    background: transparent !important;
+    padding-top: 0;
+}
+
+/* Section title viduje esančiam tekstui paliekam tavo stilių */
+#services .section-title h2,
+#services .section-title p {
+    position: relative;
+    z-index: 2;
+}
+
+/* Violetinis underline po tekstu */
+#services .section-title h2::after {
+    background-color: #500361 !important;
+}
+
+
+#services {
+    background: linear-gradient(135deg,
+        #daabf9,
+        #f8c9f2,
+        #dfb8ff,
+        #f6d4ff
+    );
+    background-size: 300% 300%;
+    animation: pastelGradientMove 12s ease infinite;
+
+    padding: 0 !important;              /* Nebelieka baltos juostos */
+}
+#services .container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: transparent !important;   /* jokio balto fono */
+}
+/* ----------------------------- */
+/*  10labpapildoma2. ANIMUOTOS ŽVAIGŽDĖTOS FIGŪROS */
+/* ----------------------------- */
+
+.floating-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; 
+  overflow: visible;
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.7;
+  color: #a24fff; /* pastel violet */
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* STAR POSITIONS */
+.star1 { top: -10px; left: 40%; animation-name: float1; }
+.star2 { top: 30%; left: -20px; animation-name: rotateScale; }
+.star3 { top: 70%; left: 80%; animation-name: float2; }
+.star4 { top: 50%; left: 10%; animation-name: rotateOnly; }
+.star5 { top: 10%; left: 90%; animation-name: float3; }
+
+/* FLOATING ANIMATIONS */
+@keyframes float1 {
+  0% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.7; }
+}
+
+@keyframes float2 {
+  0% { transform: translateX(0); opacity: 0.7; }
+  50% { transform: translateX(25px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.7; }
+}
+
+@keyframes float3 {
+  0% { transform: translate(-10px, 0); }
+  50% { transform: translate(10px, -15px); }
+  100% { transform: translate(-10px, 0); }
+}
+
+/* ROTATION + SCALING */
+@keyframes rotateScale {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.5; }
+  50% { transform: rotate(180deg) scale(1.3); opacity: 1; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.5; }
+}
+
+@keyframes rotateOnly {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

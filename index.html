@@ -557,60 +557,123 @@
       </table>
     </div>
     
-    <!-- Contact Section -->
-    <section id="contact" class="contact section light-background">
+<!-- Contact Section -->
+  <section id="contact" class="contact section light-background">
 
-      <!-- Section Title -->
-      <div class="container section-title">
-        <h2>Contact</h2>
-        <p>Jei turite klausimų</p>
-      </div><!-- End Section Title -->
+  <!-- Section Title -->
+    <div class="container section-title">
+      <h2>Contact</h2>
+      <p>Jei turite klausimų</p>
+    </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row g-4 g-lg-5">
-          <div class="col-lg-5">
-            <div class="info-box" data-aos="fade-up" data-aos-delay="200">
-              <h3>Contact Info</h3>
-              <div class="info-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box">
-                  <i class="bi bi-geo-alt"></i>
-                </div>
-                <div class="content">
-                  <h4>Our Location</h4>
-                  <p>A108 Adam Street</p>
-                  <p>New York, NY 535022</p>
-                </div>
+      <div class="row g-4 g-lg-5">
+      <!-- Kairė – kontaktinė informacija -->
+        <div class="col-lg-5">
+          <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+            <h3>Contact Info</h3>
+
+            <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon-box">
+                <i class="bi bi-geo-alt"></i>
               </div>
-
-              <div class="info-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon-box">
-                  <i class="bi bi-telephone"></i>
-                </div>
-                <div class="content">
-                  <h4>Phone Number</h4>
-                  <p>+1 5589 55488 55</p>
-                  <p>+1 6678 254445 41</p>
-                </div>
+              <div class="content">
+                <h4>Our Location</h4>
+                <p>A108 Adam Street</p>
+                <p>New York, NY 535022</p>
               </div>
+            </div>
 
-              <div class="info-item" data-aos="fade-up" data-aos-delay="500">
-                <div class="icon-box">
-                  <i class="bi bi-envelope"></i>
-                </div>
-                <div class="content">
-                  <h4>Email Address</h4>
-                  <p>info@example.com</p>
-                  <p>contact@example.com</p>
-                </div>
+            <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon-box">
+                <i class="bi bi-telephone"></i>
+              </div>
+              <div class="content">
+                <h4>Phone Number</h4>
+                <p>+1 5589 55488 55</p>
+                <p>+1 6678 254445 41</p>
+              </div>
+            </div>
+
+            <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+              <div class="icon-box">
+                <i class="bi bi-envelope"></i>
+              </div>
+              <div class="content">
+                <h4>Email Address</h4>
+                <p>info@example.com</p>
+                <p>contact@example.com</p>
               </div>
             </div>
           </div>
         </div>
 
+      <!-- Dešinė – nauja kontaktų forma -->
+        <div class="col-lg-7">
+          <form id="contact-form" class="php-email-form" data-aos="fade-left" data-aos-delay="200">
+
+
+          <!-- Vardas / Pavardė -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="first-name" class="form-label">Vardas</label>
+                <input type="text" name="first-name" id="first-name" class="form-control" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="last-name" class="form-label">Pavardė</label>
+                <input type="text" name="last-name" id="last-name" class="form-control" required>
+              </div>
+            </div>
+
+          <!-- El. paštas / Telefonas -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">El. paštas</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Telefono numeris</label>
+                <input type="tel" name="phone" id="phone" class="form-control" required>
+              </div>
+            </div>
+
+          <!-- Adresas -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Adresas</label>
+              <input type="text" name="address" id="address" class="form-control" required>
+            </div>
+
+          <!-- 3 vertinimo klausimai (skalė 1–10, number laukeliai) -->
+            <div class="mb-3">
+              <label class="form-label">1. Kaip vertinate mano CV dizainą? (1–10)</label>
+              <input type="number" name="rating-design" min="1" max="10" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">2. Kaip vertinate mano profesinę patirtį? (1–10)</label>
+              <input type="number" name="rating-experience" min="1" max="10" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">3. Kiek tikėtina, kad rekomenduotumėte mane? (1–10)</label>
+              <input type="number" name="rating-recommend" min="1" max="10" class="form-control" required>
+            </div>
+
+          <!-- Submit mygtukas -->
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">Siųsti</button>
+            </div>
+
+          </form>
+          <div id="form-result" class="form-result-box" aria-live="polite"></div>
+        </div>
       </div>
 
-    </section><!-- /Contact Section -->
+    </div>
+
+  </section><!-- /Contact Section -->
+
 
   </main>
 
@@ -640,6 +703,16 @@
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <!-- Sėkmingo pateikimo pranešimas -->
+  <div id="success-popup" class="success-popup" aria-hidden="true">
+    <div class="success-popup-inner">
+      <p>Duomenys pateikti sėkmingai!</p>
+      <button type="button" id="success-popup-close" class="btn btn-primary">
+        Gerai
+      </button>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -654,6 +727,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!-- Custom JS File -->
+  <script src="assets/js/custom.js"></script>
 
 </body>
 

@@ -354,3 +354,163 @@ document.addEventListener("DOMContentLoaded", function () {
   // pradinis Submit būsenos atnaujinimas
   updateSubmitState();
 });
+
+// ------------------------------------------------------
+// MANO ŽAIDIMAS – atminties kortelių žaidimas
+// ------------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const board = document.getElementById("game-board");
+  const movesSpan = document.getElementById("game-moves");
+  const matchesSpan = document.getElementById("game-matches");
+  const totalPairsSpan = document.getElementById("game-total-pairs");
+  const messageBox = document.getElementById("game-message");
+  const difficultySelect = document.getElementById("game-difficulty");
+  const startBtn = document.getElementById("game-start");
+  const resetBtn = document.getElementById("game-reset");
+
+  if (!board || !movesSpan || !matchesSpan || !totalPairsSpan) return;
+
+  const icons = ["🌙","⭐","⚡","💡","🔌","🔋","📡","💻"]; // 8 skirtingi simboliai
+  const difficultyPairs = {
+    easy: 4,
+    medium: 6,
+    hard: 8,
+  };
+
+  let totalPairs = difficultyPairs.medium;
+  let moves = 0;
+  let matches = 0;
+  let firstCard = null;
+  let secondCard = null;
+  let lockBoard = false;
+  let gameStarted = false;
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function updateStats() {
+    movesSpan.textContent = moves;
+    matchesSpan.textContent = matches;
+    totalPairsSpan.textContent = totalPairs;
+  }
+
+  function clearBoard() {
+    board.innerHTML = "";
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    matches = 0;
+    moves = 0;
+    messageBox.textContent = "";
+    updateStats();
+  }
+
+  function createBoard() {
+    clearBoard();
+
+    const usedIcons = icons.slice(0, totalPairs);
+    const deck = shuffle([...usedIcons, ...usedIcons]); // po dvi kiekvieno
+
+    deck.forEach((symbol) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "memory-card";
+      card.setAttribute("data-symbol", symbol);
+      card.innerHTML = `
+        <div class="card-inner">
+          <div class="card-face card-front">★</div>
+          <div class="card-face card-back">${symbol}</div>
+        </div>
+      `;
+      card.addEventListener("click", onCardClick);
+      board.appendChild(card);
+    });
+
+    gameStarted = true;
+  }
+
+  function onCardClick(e) {
+    const card = e.currentTarget;
+    if (lockBoard) return;
+    if (card.classList.contains("flipped")) return;
+    if (card.classList.contains("matched")) return;
+
+    card.classList.add("flipped");
+
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+
+    secondCard = card;
+    lockBoard = true;
+    moves++;
+    updateStats();
+
+    checkMatch();
+  }
+
+  function checkMatch() {
+    const symbol1 = firstCard.getAttribute("data-symbol");
+    const symbol2 = secondCard.getAttribute("data-symbol");
+
+    if (symbol1 === symbol2) {
+      firstCard.classList.add("matched");
+      secondCard.classList.add("matched");
+      firstCard.classList.add("disabled");
+      secondCard.classList.add("disabled");
+
+      matches++;
+      updateStats();
+      resetTurn();
+
+      if (matches === totalPairs) {
+        messageBox.textContent = `Sveikinimai! Laimėjote per ${moves} ėjimų.`;
+      }
+    } else {
+      setTimeout(() => {
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
+        resetTurn();
+      }, 700);
+    }
+  }
+
+  function resetTurn() {
+    [firstCard, secondCard] = [null, null];
+    lockBoard = false;
+  }
+
+  function startGame() {
+    const diff = difficultySelect.value || "medium";
+    totalPairs = difficultyPairs[diff] || difficultyPairs.medium;
+    createBoard();
+    updateStats();
+  }
+
+  // Mygtukai
+  if (startBtn) {
+    startBtn.addEventListener("click", startGame);
+  }
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      if (!gameStarted) return;
+      startGame();
+    });
+  }
+
+  // Keičiant sudėtingumą – jei žaidimas jau pradėtas, perstartinam
+  difficultySelect.addEventListener("change", function () {
+    if (gameStarted) {
+      startGame();
+    }
+  });
+
+  // pradinis lentos paruošimas (pvz., vidutinis lygis)
+  startGame();
+});

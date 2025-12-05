@@ -1149,3 +1149,111 @@ section,
   font-size: 0.85rem;
   margin-top: 4px;
 }
+
+/* ------------------------------------------------------ */
+/* MANO ŽAIDIMAS – atminties kortelių žaidimas            */
+/* ------------------------------------------------------ */
+
+.game-container {
+    max-width: 900px !important;
+    margin: 0 auto 60px auto !important;
+}
+
+/* statistika ir pranešimai */
+.game-stats p {
+    margin: 0 0 4px 0 !important;
+    color: #500361 !important;
+}
+
+.game-message {
+    margin-top: 18px !important;
+    padding: 12px 16px !important;
+    border-radius: 14px !important;
+    background: #f7e9ff !important;
+    color: #500361 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    min-height: 24px !important;
+}
+
+/* žaidimo lenta */
+.game-board {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(60px, 1fr)) !important;
+    gap: 14px !important;
+    justify-items: center !important;
+}
+
+/* kortelė */
+.memory-card {
+    width: 100% !important;
+    max-width: 140px !important;
+    aspect-ratio: 3 / 4 !important;
+    perspective: 900px !important;
+    cursor: pointer !important;
+}
+
+.memory-card.disabled {
+    pointer-events: none !important;
+}
+
+.memory-card .card-inner {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    transform-style: preserve-3d !important;
+    transition: transform 0.4s ease !important;
+}
+
+.memory-card.flipped .card-inner {
+    transform: rotateY(180deg) !important;
+}
+
+.card-face {
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backface-visibility: hidden !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+}
+
+/* priekinė pusė (užversta korta) */
+.card-front {
+    background: #d9b3ff !important;
+    border: 2px solid #c38aff !important;
+    color: #500361 !important;
+    box-shadow: 0 8px 18px rgba(128, 0, 128, 0.18) !important;
+}
+
+/* galinė pusė (simbolis) */
+.card-back {
+    background: #f7e9ff !important;
+    border: 2px solid #b066ff !important;
+    color: #7610bf !important;
+    transform: rotateY(180deg) !important;
+}
+
+/* kai pora surasta – šiek tiek „užgesinam“ */
+.memory-card.matched .card-back {
+    background: #e6bfef !important;
+    color: #500361 !important;
+    box-shadow: 0 0 0 2px #7610bf inset !important;
+}
+
+/* mažesniuose ekranuose šiek tiek didesni tarpai */
+@media (max-width: 576px) {
+    .game-board {
+        grid-template-columns: repeat(3, minmax(70px, 1fr)) !important;
+    }
+}
+
+/* Prefers-reduced-motion – išjungiame flip animaciją */
+@media (prefers-reduced-motion: reduce) {
+    .memory-card .card-inner {
+        transition: none !important;
+    }
+}

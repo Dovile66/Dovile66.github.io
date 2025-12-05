@@ -674,6 +674,52 @@
 
   </section><!-- /Contact Section -->
 
+      <!-- Game Section -->
+    <section id="game" class="game section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Mano žaidimas</h2>
+        <p>Atminties kortelių žaidimas – rask visas vienodas poras.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container game-container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Viršuje – sudėtingumo pasirinkimas ir mygtukai -->
+        <div class="row align-items-center mb-4">
+          <div class="col-md-4 mb-3">
+            <label for="game-difficulty" class="form-label">Sudėtingumo lygis</label>
+            <select id="game-difficulty" class="form-select">
+              <option value="easy">Lengvas (4 poros)</option>
+              <option value="medium" selected>Vidutinis (6 poros)</option>
+              <option value="hard">Sunkus (8 poros)</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3 game-stats">
+            <p><strong>Eiga:</strong></p>
+            <p>Žingsniai: <span id="game-moves">0</span></p>
+            <p>Sutaptos poros: <span id="game-matches">0</span> / <span id="game-total-pairs">0</span></p>
+          </div>
+
+          <div class="col-md-4 mb-3 text-md-end">
+            <button type="button" id="game-start" class="btn btn-primary mb-2">Start</button>
+            <button type="button" id="game-reset" class="btn btn-outline">Atnaujinti</button>
+          </div>
+        </div>
+
+        <!-- Žaidimo lenta -->
+        <div id="game-board" class="game-board">
+          <!-- Kortelės generuojamos JavaScript’u -->
+        </div>
+
+        <!-- Laimėjimo / statuso pranešimas -->
+        <div id="game-message" class="game-message" aria-live="polite"></div>
+
+      </div>
+
+    </section><!-- /Game Section -->
+
 
   </main>
 

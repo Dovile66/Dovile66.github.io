@@ -692,17 +692,17 @@ section,
 /* ------------------------------------------------------ */
 /* 10lab 3. Prefers-reduced-motion – išjungiame/supaprastinam */
 /* ------------------------------------------------------ */
-
-@media (prefers-reduced-motion: reduce) {
+/* 
+@media (prefers-reduced-motion: reduce) { */
 
     /* 0) Jokio smooth scroll ir perėjimų */
-    * {
+    /* * {
         scroll-behavior: auto !important;
         transition: none !important;
-    }
+    } */
 
     /* 1) Sekcijų fadeInUp animacija – išjungiama */
-    #about,
+    /* #about,
     #resume,
     #portfolio,
     #services,
@@ -711,50 +711,50 @@ section,
         animation: none !important;
         opacity: 1 !important;          
         transform: none !important;
-    }
+    } */
 
     /* 2) Social ikonų judesys – išjungiame wiggle/idle */
-    .social-links a i,
+    /* .social-links a i,
     .footer .social-links a i {
         animation: none !important;
         transform: none !important;
-    }
+    } */
 
     /* 3) Krovimo animacija – spinneris nesisuka */
-    .spinner-circle {
+    /* .spinner-circle {
         animation: none !important;
         border-color: #e4c2ff !important;
         border-top-color: #e4c2ff !important;
         border-right-color: #e4c2ff !important;
         transform: none !important;
-    }
+    } */
 
     /* 4) jei dar turi pulsuojančius taškus (dots), išjungi ir juos */
-    .page-preloader .dot {
+    /* .page-preloader .dot {
         animation: none !important;
         transform: none !important;
         opacity: 1 !important;
-    }
+    } */
 
     /* 5) Išjungiame AOS / scroll animacijas */
-    [data-aos],
+    /* [data-aos],
     .aos-init,
     .aos-animate {
         animation: none !important;
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
-    }
+    } */
 
     /* 6) Jei šablonas naudoja animate.css efektus */
-    .animate__animated {
+    /* .animate__animated {
         animation: none !important;
         transform: none !important;
         opacity: 1 !important;
-    }
+    } */
 
     /* 7) ŽVAIGŽDUTĖS – išjungiame tik reduce režime */
-    .star,
+    /* .star,
     .star::before,
     .star::after,
     .floating-star,
@@ -764,7 +764,7 @@ section,
         transform: none !important;
         opacity: 1 !important;
     }
-}
+} */
 
 /* ------------------------------------------------------ */
 /* VIOLETINĖ TEMA – PAPILDOMI PATAISYMAI                  */
@@ -969,4 +969,183 @@ section,
 @keyframes rotateOnly {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* ------------------------------------------------------ */
+/*  Kontaktų formos vizualinis suvienodinimas              */
+/* ------------------------------------------------------ */
+
+#contact form {
+    background: #f8e9ff;              /* švelniai rožinis-violetinis fonas kaip kitose kortelėse */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(120, 20, 180, 0.15);
+    border: 2px solid #e3c4ff;
+}
+
+/* formos eilutės tarpų tvarkymas */
+#contact form .row > div {
+    margin-bottom: 20px;
+}
+
+/* etikečių stilius */
+#contact form label {
+    font-weight: 600;
+    color: #5a0080;       /* tamsiai violetinė */
+    margin-bottom: 6px;
+}
+
+/* įvedimo laukeliai */
+#contact form input,
+#contact form textarea,
+#contact form select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid #d7b8ff;
+    background: white;
+    transition: 0.3s ease;
+    font-size: 15px;
+}
+
+/* hover + focus efektai */
+#contact form input:focus,
+#contact form textarea:focus {
+    border-color: #8a2be2;       /* violetinė */
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
+    outline: none;
+}
+
+/* submit mygtukas */
+#contact form button[type="submit"] {
+    background-color: #8a2be2;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 24px;
+    border: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+#contact form button[type="submit"]:hover {
+    background-color: #7200c4;
+    transform: translateY(-2px);
+}
+
+/* Kad forma lygiai derėtų su info-box kaireje */
+#contact .info-box {
+    background: #f8e9ff;
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #e3c4ff;
+    box-shadow: 0 10px 25px rgba(120, 20, 180, 0.10);
+}
+
+/* Ikonų dėžutės pataisinimas */
+#contact .info-box .icon-box {
+    background: #8a2be2;
+    color: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact .info-box .content h4 {
+    color: #5a0080;
+    font-weight: 700;
+}
+/* Rezultatų blokas po kontaktų forma */
+.form-result-box {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #f3ecff;
+    border-radius: 10px;
+    border: 1px solid #d7b8ff;
+    color: #410333;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.form-result-box p {
+    margin-bottom: 4px;
+}
+
+.form-result-box a {
+    color: #7d30cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.form-result-box a:hover {
+    text-decoration: underline;
+}
+
+.form-result-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f2d9ff;
+  border-radius: 10px;
+  display: none;
+}
+
+.form-result-box.visible {
+  display: block;
+}
+
+.alert-danger {
+  padding: 15px;
+  background-color: #ffcccc;
+  border-radius: 8px;
+  color: #660000;
+  margin-bottom: 15px;
+}
+/* ------------------------------------------------------ */
+/* Sėkmingo pateikimo pop-up pranešimas                   */
+/* ------------------------------------------------------ */
+
+.success-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.success-popup.show {
+    display: flex;
+}
+
+.success-popup-inner {
+    background: #f8e9ff;
+    border-radius: 18px;
+    padding: 24px 32px;
+    box-shadow: 0 12px 30px rgba(120, 20, 180, 0.35);
+    border: 2px solid #e3c4ff;
+    text-align: center;
+    max-width: 360px;
+}
+
+.success-popup-inner p {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #5a0080;
+}
+/* ------------------------------------------------------ */
+/* Realaus laiko formos klaidų stiliai                    */
+/* ------------------------------------------------------ */
+
+.field-error {
+  border-color: #dc3545 !important;              /* raudonas rėmelis */
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, .25) !important;
+}
+
+.field-error-text {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }

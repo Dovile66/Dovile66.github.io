@@ -1176,12 +1176,21 @@ section,
     min-height: 24px !important;
 }
 
-/* žaidimo lenta */
+/* žaidimo lenta – bazė (be stulpelių) */
 .game-board {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(60px, 1fr)) !important;
     gap: 14px !important;
     justify-items: center !important;
+}
+
+/* Lengvas lygis – 4×3 */
+.game-board.board-easy {
+    grid-template-columns: repeat(4, minmax(60px, 1fr)) !important;
+}
+
+/* Sunkus lygis – 6×4 */
+.game-board.board-hard {
+    grid-template-columns: repeat(6, minmax(60px, 1fr)) !important;
 }
 
 /* kortelė */
@@ -1229,12 +1238,23 @@ section,
     box-shadow: 0 8px 18px rgba(128, 0, 128, 0.18) !important;
 }
 
-/* galinė pusė (simbolis) */
+/* galinė pusė (paveikslėlis) */
 .card-back {
-    background: #f7e9ff !important;
+    background: #ffffff !important;         /* balta po nuotrauka */
     border: 2px solid #b066ff !important;
     color: #7610bf !important;
     transform: rotateY(180deg) !important;
+    padding: 8px !important;
+}
+
+/* paveikslėlis kortelės gale */
+.card-back .card-img,
+.card-back img {
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
 /* kai pora surasta – šiek tiek „užgesinam“ */
@@ -1244,10 +1264,14 @@ section,
     box-shadow: 0 0 0 2px #7610bf inset !important;
 }
 
-/* mažesniuose ekranuose šiek tiek didesni tarpai */
+/* mažesniuose ekranuose – supaprastinti tinklelį */
 @media (max-width: 576px) {
-    .game-board {
+    .game-board.board-easy {
         grid-template-columns: repeat(3, minmax(70px, 1fr)) !important;
+    }
+
+    .game-board.board-hard {
+        grid-template-columns: repeat(4, minmax(70px, 1fr)) !important;
     }
 }
 

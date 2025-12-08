@@ -690,9 +690,8 @@
           <div class="col-md-4 mb-3">
             <label for="game-difficulty" class="form-label">Sudėtingumo lygis</label>
             <select id="game-difficulty" class="form-select">
-              <option value="easy">Lengvas (4 poros)</option>
-              <option value="medium" selected>Vidutinis (6 poros)</option>
-              <option value="hard">Sunkus (8 poros)</option>
+              <option value="easy" selected>Lengvas (4×3)</option>
+              <option value="hard">Sunkus (6×4)</option>
             </select>
           </div>
 
@@ -700,10 +699,13 @@
             <p><strong>Eiga:</strong></p>
             <p>Žingsniai: <span id="game-moves">0</span></p>
             <p>Sutaptos poros: <span id="game-matches">0</span> / <span id="game-total-pairs">0</span></p>
+            <p>Laikas: <span id="game-time">0</span> s</p>
+            <p>Geriausias (Lengvas): <span id="game-best-easy">–</span></p>
+            <p>Geriausias (Sunkus): <span id="game-best-hard">–</span></p>
           </div>
 
           <div class="col-md-4 mb-3 text-md-end">
-            <button type="button" id="game-start" class="btn btn-primary mb-2">Start</button>
+            <button type="button" id="game-start" class="btn btn-primary">Start</button>
             <button type="button" id="game-reset" class="btn btn-outline">Atnaujinti</button>
           </div>
         </div>
